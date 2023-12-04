@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "arcade";
+  src: url("/public/fonts/NanoPixDemoRegular-1Gg7B.ttf") format("truetype");
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+h1{
+  font-family: "arcade", sans-serif;
+}
+
+.custom-border{
+  border: 1px solid #00000036;
+}
+
+@layer base {
+  .section-container{
+    @apply  w-full flex gap-4 flex-wrap max-w-[1300px] mx-auto items-center justify-center bg-white px-4 py-6 rounded-lg shadow-sm border
+  }
+}
