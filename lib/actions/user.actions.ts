@@ -86,8 +86,8 @@ export async function signIn({email , password}: { email: string, password:strin
         if(match) return user 
         else return undefined
 
-    }catch(e: any) {
-        
+    }catch(error: any) {
+        throw new Error(`Failed to login user: ${error.message} `)
     }
 }
 

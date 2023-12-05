@@ -3,7 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Root from './Root'
-
+import GlobalLoader from '@/components/ui/GlobalLoader'
+import Alert from '@/components/ui/Alert'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -20,6 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Root>
+          <GlobalLoader />
+          <Alert/>
           <Navbar />
           {children}
         </Root>

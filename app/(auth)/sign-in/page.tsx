@@ -3,9 +3,19 @@ import Image from "next/image"
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/lib/actions/user.actions";
+import { useRecoilState } from "recoil";
+import loaderAtom from "@/store/loader";
+import alertAtom from "@/store/alert";
 
 
 function SignIn() {
+
+    //global loader
+    const [_, setLoader] = useRecoilState(loaderAtom);
+
+    //global alert
+    const [alert, setAlert] = useRecoilState(alertAtom);
+
     //mounting the router to redirect
     const router = useRouter()
 
@@ -18,15 +28,36 @@ function SignIn() {
     //this function call a server action and update the data on database
     const submitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoader(true);
 
-        await signIn({email: userData.email, password: userData.password})
+        await signIn({ email: userData.email, password: userData.password })
             .then(res => {
-                console.log(res)
-                if (!res) return alert("error");
-                else {
+                setLoader(false)
+
+                //checking if a user match with the credentials
+                if (!res) {
+                    setAlert({
+                        ...alert,
+                        show: true,
+                        message: "User dosent exists",
+                        secondButtonMsg: "Return",
+                        secondCallback: () => setAlert(alert),
+                    })
+                } else {
                     document.cookie = 'auth=true';
+                    document.cookie = "onboardedCookie=true";
                     router.push('/')
                 }
+            })
+            .catch((error) => {
+                setLoader(false)
+                setAlert({
+                    ...alert,
+                    show: true,
+                    message: "Operation Failed",
+                    secondButtonMsg: "Return",
+                    secondCallback: () => setAlert(alert),
+                })
             })
     }
 
