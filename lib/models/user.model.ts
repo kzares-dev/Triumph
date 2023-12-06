@@ -13,14 +13,10 @@ const userSchema = new mongoose.Schema({
             ref: "Goal",
         }
     ],
-    onboarded: {
-        type: Boolean,
-        default: false
-    },
     verified: {
         type: Boolean,
         default: false
-    }
+    },
 });
 
 

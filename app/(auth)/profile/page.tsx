@@ -16,7 +16,7 @@ function Onboarding() {
 
     if (!sesion) return (
         <div className="flex w-full h-[100vh] items-center justify-center flex-row">
-            <Image src="/next.svg" alt="" width={120} height={120} />
+            <Image src="/logo.svg" alt="" width={120} height={120} />
             {" "}
             <h1 className=" text-[30px] font-mono text-gray-600">
                 | verify your email to continue

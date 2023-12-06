@@ -74,7 +74,7 @@ function SignIn() {
 
             <div className="px-5 pt-[10vw] rounded-md border shadow min-w-[500px] bg-white min-h-[500px] flex flex-col items-center gap-10">
 
-                <Image src="/next.svg" alt="" width={150} height={150} />
+                <Image src="/logo.svg" alt="" width={150} height={150} />
 
                 <form onSubmit={(e) => submitForm(e)} className="w-full flex gap-5 flex-col">
                     <input value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} type="email" className="custom-border w-full py-3 pl-4" placeholder="Type your email" required />
