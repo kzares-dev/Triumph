@@ -30,6 +30,7 @@ function SignUp() {
     const submitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const token = authToken()
+        console.log(token)
         setLoader(true)
 
         await updateUser({
@@ -40,7 +41,6 @@ function SignUp() {
         }).then(() => {
             setLoader(false)
             document.cookie = 'auth=true';
-            console.log("object")
             router.push('/onboarding')
         })
             .catch((error) => {

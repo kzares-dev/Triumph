@@ -6,6 +6,8 @@ import Root from './Root'
 import GlobalLoader from '@/components/ui/GlobalLoader'
 import Alert from '@/components/ui/Alert'
 const inter = Inter({ subsets: ['latin'] })
+import NextTopLoader from 'nextjs-toploader';
+import LoadingBar from 'react-top-loading-bar'
 
 export const metadata: Metadata = {
   title: 'Triumph',
@@ -20,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <NextTopLoader color='#000' />
         <Root>
+
           <GlobalLoader />
-          <Alert/>
+          <Alert />
           <Navbar />
           {children}
         </Root>

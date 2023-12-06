@@ -6,12 +6,16 @@ import { signIn } from "@/lib/actions/user.actions";
 import { useRecoilState } from "recoil";
 import loaderAtom from "@/store/loader";
 import alertAtom from "@/store/alert";
+import sesionAtom from "@/store/sesion";
 
 
 function SignIn() {
 
     //global loader
     const [_, setLoader] = useRecoilState(loaderAtom);
+
+    //load the sesion to uupdate 
+    const [sesion, setSesion] = useRecoilState(sesionAtom);
 
     //global alert
     const [alert, setAlert] = useRecoilState(alertAtom);
@@ -33,9 +37,9 @@ function SignIn() {
         await signIn({ email: userData.email, password: userData.password })
             .then(res => {
                 setLoader(false)
-
+                
                 //checking if a user match with the credentials
-                if (!res) {
+                if (!res.id) {
                     setAlert({
                         ...alert,
                         show: true,
@@ -49,6 +53,7 @@ function SignIn() {
                     const expirationDateString = expirationDate.toUTCString(); // Convertir a formato UTC
 
                     document.cookie = `auth=true; expires=${ expirationDateString }`;
+                    setSesion(res)
                     router.push('/')
                 }
             })

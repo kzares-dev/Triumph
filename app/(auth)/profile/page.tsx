@@ -1,9 +1,13 @@
 "use client";
 import sesionAtom from "@/store/sesion"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil"
 
 function Onboarding() {
+
+    //seting up the router
+    const router = useRouter()
 
     //checking if is the user is verify
     const [sesion, setSesion] = useRecoilState(sesionAtom);
@@ -34,7 +38,7 @@ function Onboarding() {
                     <h1 className="text-gray-400 font-mono text-[20px]"> {sesion.email} </h1>
 
                     <div className="w-full text-right pr-1 pt-5" >
-                        <button className="bg-black rounded-md px-5 py-2 text-white ">
+                        <button onClick={() => router.push("/")} className="bg-black rounded-md px-5 py-2 text-white ">
                             Continue
                         </button>
                     </div>
