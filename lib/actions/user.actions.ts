@@ -57,6 +57,7 @@ export async function verifyUser(authToken: any) {
 
     const user = await User.findOneAndUpdate(
         { authToken },
+        { $set: { verified: true } },
         { new: true }
     )
     return user;

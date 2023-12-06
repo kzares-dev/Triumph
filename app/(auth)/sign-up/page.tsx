@@ -4,12 +4,21 @@ import { authToken, generateUUID } from "@/lib/crypto";
 import Image from "next/image"
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+import loaderAtom from "@/store/loader";
+import alertAtom from "@/store/alert";
 
 
 function SignUp() {
+    //global loader
+    const [_, setLoader] = useRecoilState(loaderAtom);
+
+    //global alert
+    const [alert, setAlert] = useRecoilState(alertAtom);
+
     //mounting the router to redirect
     const router = useRouter()
-    
+
     //state that stores the user data
     const [userData, setUserData] = useState({
         name: "",
@@ -21,7 +30,7 @@ function SignUp() {
     const submitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const token = authToken()
-        console.log(token)
+        setLoader(true)
 
         await updateUser({
             ...userData,
@@ -29,10 +38,21 @@ function SignUp() {
             authToken: token,
             image: "",
         }).then(() => {
+            setLoader(false)
             document.cookie = 'auth=true';
             console.log("object")
             router.push('/onboarding')
         })
+            .catch((error) => {
+                setLoader(false)
+                setAlert({
+                    ...alert,
+                    show: true,
+                    message: "Operation Failed",
+                    secondButtonMsg: "Return",
+                    secondCallback: () => setAlert(alert),
+                })
+            })
     }
 
     return (
@@ -53,6 +73,7 @@ function SignUp() {
                             Sign In
                         </button>
                     </div>
+                    <p onClick={() => router.push("/sign-in")} className="text-underline underline text-gray-400 cursor-pointer" >Login to your account</p>
                 </form>
 
 

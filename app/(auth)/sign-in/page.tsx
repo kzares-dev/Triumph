@@ -44,8 +44,11 @@ function SignIn() {
                         secondCallback: () => setAlert(alert),
                     })
                 } else {
-                    document.cookie = 'auth=true';
-                    document.cookie = "onboardedCookie=true";
+                    const expirationDate = new Date();
+                    expirationDate.setDate(expirationDate.getDate() + 7); // Agregar una semana
+                    const expirationDateString = expirationDate.toUTCString(); // Convertir a formato UTC
+
+                    document.cookie = `auth=true; expires=${ expirationDateString }`;
                     router.push('/')
                 }
             })
@@ -78,6 +81,8 @@ function SignIn() {
                             Sign In
                         </button>
                     </div>
+
+                    <p onClick={() => router.push("/sign-up")} className="text-underline underline text-gray-400 cursor-pointer" >Create an account</p>
                 </form>
 
 
