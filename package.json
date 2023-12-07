@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@clerk/nextjs": "^4.27.1",
     "@clerk/themes": "^1.7.9",
     "@hookform/resolvers": "^3.3.2",
