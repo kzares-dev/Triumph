@@ -7,7 +7,6 @@ import GlobalLoader from '@/components/ui/GlobalLoader'
 import Alert from '@/components/ui/Alert'
 const inter = Inter({ subsets: ['latin'] })
 import NextTopLoader from 'nextjs-toploader';
-import LoadingBar from 'react-top-loading-bar'
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 export const metadata: Metadata = {
   title: 'Triumph',

@@ -2,9 +2,12 @@ import mongoose from "mongoose";
 
 const goalSchema = new mongoose.Schema({
     id: { type: String, required: true },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    userId: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
     },
     goal: {
         type: Number
@@ -20,7 +23,10 @@ const goalSchema = new mongoose.Schema({
     },
     monthlyQuota: {
         type: Number
-    }
+    },
+    deadline: {
+        type: String
+    },
 })
 
 const Goal = mongoose.models.Goal || mongoose.model("Goal", goalSchema )

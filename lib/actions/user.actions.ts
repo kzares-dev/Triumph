@@ -20,7 +20,7 @@ export async function updateUser({
     email,
     image = "",
     authToken,
-}: Props): Promise<void> {
+}: Props) {
 
     //hash and salt the user password
     const salt = randomBytes(16).toString('hex');

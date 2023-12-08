@@ -5,23 +5,27 @@ import { connectToDB } from "../mongoose";
 
 type Props = {
     id: string,
-    user: string,
+    userId: string,
+    title: string,
     goal: Number,
     current: Number,
     dailyTrack: Array<any>,
-    miliestones: Array<any>,
+    milestones: Array<any>,
     monthlyQuota: Number,
+    deadline: string
 
 }
 
 export async function updateGoal({
     id,
-    user,
+    userId,
+    title,
     goal,
     current,
     dailyTrack,
-    miliestones,
+    milestones,
     monthlyQuota,
+    deadline
 }: Props): Promise<void> {
     connectToDB()
 
@@ -29,18 +33,33 @@ export async function updateGoal({
         await Goal.findOneAndUpdate(
             { id: id },
             {
-                user : user ,
-                goal : goal ,
-                current : current ,
-                dailyTrack : dailyTrack ,
-                miliestones : miliestones ,
-                monthlyQuota : monthlyQuota ,
+                userId: userId,
+                title: title,
+                goal: goal,
+                current: current,
+                dailyTrack: dailyTrack,
+                milestones: milestones,
+                monthlyQuota: monthlyQuota,
+                deadline: deadline
             },
             { upsert: true }
         )
+
+
 
     } catch (error: any) {
         throw new Error(`Failed to create/update user: ${error.message} `)
     }
 
+}
+
+export async function getGoals(userId: string) {
+
+    connectToDB()
+    try {
+        const goals = await Goal.find({ userId });
+        return goals;
+    } catch (error: any) {
+        throw new Error(`Failed to get goals: ${error.message} `)
+    }
 }

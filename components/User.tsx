@@ -9,7 +9,7 @@ function User() {
         <div className="flex items-center justify-center gap-2 bg-gray-50 pr-4 pl-1 py-1 rounded-md custom-border cursor-pointer ">
             <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                 {user?.picture ?
-                    <Image src={user.picture} alt="" width={20} height={20} /> :
+                    <img src={user.picture} alt="" width={20} height={20} /> :
                     <Image src="/assets/user.svg" alt="" width={20} height={20} />
                     }
             </div>
