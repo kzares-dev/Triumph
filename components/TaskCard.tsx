@@ -8,18 +8,18 @@ interface Props {
     goal: Number,
     current: Number,
     deadline: string,
-    onCLick: any,
+    id:string,
 }
 
 
-function TaskCard({ title, goal, current, deadline, onClick }: Props) {
+function TaskCard({ title, goal, current,deadline, id }: Props) {
     const router = useRouter();
 
     const { user } = useUser() //load the user to get the profile pic 
 
 
     return (
-        <div onClick={() => {onClick() ; router.push("/goal/id")}} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col justify-between min-w-[400px] h-[200px] bg-white shadow border rounded-md p-5 cursor-pointer">
+        <div onClick={() => { router.push(`/goal/${id}`)}} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col justify-between min-w-[400px] h-[200px] bg-white shadow border rounded-md p-5 cursor-pointer">
 
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center flex-row gap-3">

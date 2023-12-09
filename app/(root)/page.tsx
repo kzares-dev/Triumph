@@ -66,11 +66,11 @@ export default function Home() {
         {userGoals.map((goal: Goal) => (
           <TaskCard
             key={goal.id}
+            id={goal.id}
             title={goal.title}
             goal={goal.goal}
             current={goal.current}
             deadline={goal.deadline} 
-            onClick={() => setSelectedGoal(goal)}
             />
         ))}
 

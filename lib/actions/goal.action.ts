@@ -63,3 +63,15 @@ export async function getGoals(userId: string) {
         throw new Error(`Failed to get goals: ${error.message} `)
     }
 }
+
+export async function getGoal(id: string) {
+
+    connectToDB()
+    try {
+        const goal = await Goal.find({ id });
+        console.log(goal)
+        return goal;
+    } catch (error: any) {
+        throw new Error(`Failed to get goal: ${error.message} `)
+    }
+}
