@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import User from "./User";
 
 
-async function Navbar() {
+function Navbar() {
 
     //seting up router
     const router = useRouter();

@@ -6,8 +6,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Shrimer from "@/components/shared/Shrimer"
-import { useRecoilState } from "recoil";
-import selectedGoalAtom from "@/store/selectedGoal";
 
 interface Goal {
   id: string,
@@ -24,9 +22,6 @@ interface Goal {
 export default function Home() {
 
   const router = useRouter(); //seting up the router 
-
-  //this is to set a selected goal and display the data in goal page
-  const [_, setSelectedGoal] = useRecoilState(selectedGoalAtom)
 
   //getting the user from auth0
   const { user } = useUser();
@@ -66,11 +61,7 @@ export default function Home() {
         {userGoals.map((goal: Goal) => (
           <TaskCard
             key={goal.id}
-            id={goal.id}
-            title={goal.title}
-            goal={goal.goal}
-            current={goal.current}
-            deadline={goal.deadline} 
+            goal={goal}
             />
         ))}
 

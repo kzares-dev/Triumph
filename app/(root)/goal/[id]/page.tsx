@@ -7,7 +7,7 @@ import { getGoal } from "@/lib/actions/goal.action"
 import { useEffect, useState } from "react"
 
 
-async function page({
+function page({
   params: { id },
 }: {
   params: {
@@ -20,43 +20,40 @@ async function page({
 
   useEffect(() => {
 
-    
+
     getGoal(id)
-      .then((data) => setData(data))
+      .then((data) => setData(data[0]))
       .catch((error) => alert(error))
 
   }, [])
 
+  console.log(data)
 
 
-  if (!data?.id) (
-     < main className="section-container flex space-y-10 w-full flex-col p-5 pt-[200px] bg-gray-50 min-h-[100vh] " >
-      <div className="section-container ">
-        <h1 className="font-mono text-[150px]">  <span className="text-[20px] font-extrabold -mt-5 bg-gray-50  border shadow-sm rounded-md px-3 py-1">  </span> </h1>
-      </div>
 
-      <div className="section-container">
-        <h1 className="text-[40px] font-mono font-semibold">This Year</h1>
+  if (data?.id) return <main className="section-container flex space-y-10 w-full flex-col p-5 pt-[200px] bg-gray-50 min-h-[100vh] " >
+    <div className="section-container ">
+      <h1 className="font-mono text-[150px]"> {data.current} <span className="text-[20px] font-extrabold -mt-5 bg-gray-50  border shadow-sm rounded-md px-3 py-1"> {data.goal} </span> </h1>
+    </div>
 
-        <Chart />
-        <History />
-      </div>
+    <div className="section-container">
+      <h1 className="text-[40px] font-mono font-semibold">This Year</h1>
 
-      <div className="section-container ">
-        <Miliestones />
-      </div>
+      <Chart />
+      <History />
+    </div>
 
-      <div className="section-container">
-        <MonthlyQuota />
-      </div>
+    <div className="section-container ">
+      <Miliestones milestones={data.milestones} />
+    </div>
 
-    </main >
-  )
-}
+    <div className="section-container">
+      <MonthlyQuota />
+    </div>
 
-
-const getServerSideProps = () =>{
+  </main >
 
 }
+
 
 export default page
