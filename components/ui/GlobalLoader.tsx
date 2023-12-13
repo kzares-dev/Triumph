@@ -7,7 +7,6 @@ import { useRecoilState } from "recoil"
 function GlobalLoader() {
 
     const [loader, _] = useRecoilState(loaderAtom);
-    console.log(loader)
 
     if(loader) return (
         <div className="fixed z-10 flex items-center justify-center inset-0 bg-[#00000020] ">
