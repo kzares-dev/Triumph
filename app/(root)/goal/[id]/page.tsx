@@ -51,7 +51,6 @@ function page({
 
   //get the data from database and save it in a client state
   const [data, setData] = useState<any>();
-  console.log(data?.dailyTrack)
 
   useEffect(() => {
     _getGoal()
@@ -59,24 +58,26 @@ function page({
 
   //add money modal functionality
   const [addModal, setAddModal] = useState(false);
-  const [ammountToAdd, setAmmountToAdd] = useState(0)
-
+  const [ammountToAdd, setAmmountToAdd] = useState()
 
   //this function call the `updateGoal` action
   //and pass all the past params exept the `current` field is increased
   const addMoney = () => {
+    if (!ammountToAdd) return //cheking for ts
     setLoader(true);
 
     //update today earned money 
     const foo = { ...data.dailyTrack[0] };
-    const today = moment(new Date).format("DD-MM-YYYY"); //geting the today date and fotmating 
+    const today = "15-12-2023" // moment(new Date).format("DD-MM-YYYY"); //geting the today date and fotmating 
 
-    foo[today] = foo[today] || 0 + ammountToAdd;
-    console.log(foo)
+    //console.log(foo)
+    foo[today] = (foo[today] || 0) + ammountToAdd;
+    console.log({ "message": foo })
+    console.log(foo[today])
 
     updateGoal({
       ...data,
-      dailyTrack: foo,
+      dailyTrack: [foo],
       current: parseInt(data.current) + ammountToAdd
     }).then(() => {
       setLoader(false);
@@ -125,7 +126,7 @@ function page({
       </div>
 
       <div className="section-container">
-        <MonthlyQuota />
+        <MonthlyQuota quota={data.monthlyQuota} />
       </div>
 
     </main >

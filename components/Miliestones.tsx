@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Milestones({ milestones }: any) {
-    console.log(milestones)
 
     if (milestones?.length > 0) return (
         <div className="w-full">
