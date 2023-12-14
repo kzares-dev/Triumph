@@ -8,9 +8,10 @@ function Navbar() {
 
     //seting up router
     const router = useRouter();
+    console.log("culo teta culo ") 
 
     return (
-        <div className="fixed top-0 left-0 right-0 bg-white shadow-sm border">
+        <div className="fixed top-0 left-0 right-0 ahite shadow-sm border bg-white">
             <div className="px-4 py-5 flex items-center justify-between">
 
                 <div onClick={() => router.push("/")} className="flex items-center justify-center gap-6 cursor-pointer">

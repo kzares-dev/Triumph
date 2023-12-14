@@ -71,7 +71,7 @@ function page({
     const foo = { ...data.dailyTrack[0] };
     const today = moment(new Date).format("DD-MM-YYYY"); //geting the today date and fotmating 
 
-    foo[today] = foo[today] || 0 + ammountToAdd; 
+    foo[today] = foo[today] || 0 + ammountToAdd;
     console.log(foo)
 
     updateGoal({
@@ -102,33 +102,34 @@ function page({
 
 
 
-  if (data?.id) return <main className="relative flex space-y-10 w-full flex-col p-5 pt-[200px] bg-gray-50 min-h-[100vh] " >
+  if (data?.id) {
+    return <main className="flex space-y-10 w-full flex-col p-5 pt-[200px] bg-gray-50 min-h-[100vh] " >
 
-    <AddAmount onClickEvent={() => setAddModal(true)} />
+      <AddAmount onClickEvent={() => setAddModal(true)} />
 
-    {addModal && <AddModal setAmmountToAdd={setAmmountToAdd} ammountToAdd={ammountToAdd} addMoney={addMoney} />}
+      {addModal && <AddModal setAmmountToAdd={setAmmountToAdd} ammountToAdd={ammountToAdd} addMoney={addMoney} />}
 
-    <div className="section-container ">
-      <h1 className="font-mono text-[150px]"> {data.current} <span className="text-[20px] font-extrabold -mt-5 bg-gray-50  border shadow-sm rounded-md px-3 py-1"> {data.goal} </span> </h1>
-    </div>
+      <div className="section-container ">
+        <h1 className="font-mono text-[150px]"> {data.current} <span className="text-[20px] font-extrabold -mt-5 bg-gray-50  border shadow-sm rounded-md px-3 py-1"> {data.goal} </span> </h1>
+      </div>
 
-    <div className="section-container">
-      <h1 className="text-[40px] font-mono font-semibold">This Year</h1>
+      <div className="section-container">
+        <h1 className="text-[40px] font-mono font-semibold">This Year</h1>
 
-      <Chart />
-      <History />
-    </div>
+        <Chart />
+        <History />
+      </div>
 
-    <div className="section-container ">
-      <Miliestones milestones={data.milestones} />
-    </div>
+      <div className="section-container ">
+        <Miliestones milestones={data.milestones} />
+      </div>
 
-    <div className="section-container">
-      <MonthlyQuota />
-    </div>
+      <div className="section-container">
+        <MonthlyQuota />
+      </div>
 
-  </main >
-  else {
+    </main >
+  } else {
     return <div className="flex w-full h-screen items-center justify-center "><Loader /></div>
 
   }

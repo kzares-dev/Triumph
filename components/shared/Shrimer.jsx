@@ -1,11 +1,9 @@
-import React from 'react'
-import Shimmer from "react-shimmer-effect";
 
 function Shrimer() {
     return (
         <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 border border-blue-300 shadow rounded-md p-4 min-w-[400px] h-[200px]">
             <div className="animate-pulse flex space-x-4">
-                <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+                <div className="rounded-full bg-slate-200 h-10 w-10"> </div>
                 <div className="flex flex-1 space-y-10 py-1 flex-col">
 
                     <div className="space-y-6">

@@ -88,11 +88,11 @@ function CreateGoal() {
         })
     }
     return (
-        <div className="min-h-[100vh]  bg-gray-50 font-mono ">
+        <div className="min-h-[100vh] bg-gray-50 font-mono  pb-5">
 
-            <div className="min-h-[500px] flex px-5 gap-10 justify-center flex-row w-full pt-[20vh]">
+            <div className="min-h-[500px] flex px-5 gap-10 justify-center w-full pt-[20vh] flex-col lg:flex-row ">
 
-                <div className="px-5 pt-[5vw] rounded-md border shadow min-w-[500px] bg-white h-full flex flex-col items-center gap-10 pb-10">
+                <div className="px-5 pt-[5vw] rounded-md border shadow w-full lg:w-[500px] bg-white h-full flex flex-col items-center gap-10 pb-10">
 
                     <Image src="/logo-full.svg" alt="" width={200} height={200} />
 
@@ -117,7 +117,7 @@ function CreateGoal() {
                             value={collectedData.deadline}
                             onChange={(e) => setCollectedData({ ...collectedData, deadline: e.target.value })}
                             type="date"
-                            className="custom-border w-full py-3 pl-4"
+                            className="custom-border w-full py-3 pl-4 pr-2"
                             placeholder="max-duration"
                             required />
 

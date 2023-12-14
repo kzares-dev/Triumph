@@ -22,3 +22,9 @@ h1{
     @apply  w-full flex gap-4 flex-wrap max-w-[1300px] mx-auto items-center justify-center bg-white px-4 py-6 rounded-lg shadow-sm border
   }
 }
+
+@media (max-width: 800px){
+  html{
+    font-size: 80%;
+  }
+}
