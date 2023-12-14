@@ -10,6 +10,7 @@ import Loader from "@/components/ui/Loader";
 import { getGoal, updateGoal } from "@/lib/actions/goal.action"
 import alertAtom from "@/store/alert";
 import loaderAtom from "@/store/loader";
+import moment from "moment";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil";
 
@@ -40,7 +41,7 @@ function page({
           message: "Failed to load Goal",
           show: true,
           firstButtonMsg: "retry",
-          firstCallback: () => { _getGoal() ;setAlert(alert)},
+          firstCallback: () => { _getGoal(); setAlert(alert) },
         })
 
         setLoader(false);
@@ -50,6 +51,7 @@ function page({
 
   //get the data from database and save it in a client state
   const [data, setData] = useState<any>();
+  console.log(data?.dailyTrack)
 
   useEffect(() => {
     _getGoal()
@@ -59,19 +61,28 @@ function page({
   const [addModal, setAddModal] = useState(false);
   const [ammountToAdd, setAmmountToAdd] = useState(0)
 
+
   //this function call the `updateGoal` action
   //and pass all the past params exept the `current` field is increased
   const addMoney = () => {
-    setLoader(true)
+    setLoader(true);
+
+    //update today earned money 
+    const foo = { ...data.dailyTrack[0] };
+    const today = moment(new Date).format("DD-MM-YYYY"); //geting the today date and fotmating 
+
+    foo[today] = foo[today] || 0 + ammountToAdd; 
+    console.log(foo)
 
     updateGoal({
       ...data,
-      current: data.current += ammountToAdd,
+      dailyTrack: foo,
+      current: parseInt(data.current) + ammountToAdd
     }).then(() => {
       setLoader(false);
       setAddModal(false);
       _getGoal()
-     
+
 
     }).catch(() => {
       setAlert({
