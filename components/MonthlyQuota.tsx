@@ -1,6 +1,7 @@
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 function MonthlyQuota({ quota } : { quota: Number }) {
-  return (
+  
+  if(quota) return (
     <div className='w-full'>
       <h1 className="text-[40px] font-mono font-semibold">Monthly Quota: {quota.toString()} $ </h1>
 

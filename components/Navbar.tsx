@@ -8,7 +8,6 @@ function Navbar() {
 
     //seting up router
     const router = useRouter();
-    console.log("culo teta culo ") 
 
     return (
         <div className="fixed top-0 left-0 right-0 ahite shadow-sm border bg-white">

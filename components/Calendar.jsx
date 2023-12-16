@@ -3,11 +3,10 @@ import Heatmap from 'react-calendar-heatmap';
 import { subYears, isBefore, isSameDay, addDays } from 'date-fns';
 
 
-
 const generateHeatmapValues = (startDate, endDate) => {
+    const values = [];
 
     let currentDate = startDate;
-    const values = []
     while (isBefore(currentDate, endDate) || isSameDay(currentDate, endDate)) {
         const count = Math.random() * 4;
 
@@ -19,36 +18,32 @@ const generateHeatmapValues = (startDate, endDate) => {
     return values;
 };
 
+
 const RandomCalendar = () => {
     const startDate = subYears(new Date(), 1);
     const endDate = new Date();
-    console.log("object")
 
     return (
         <div>
-            <div className="wrapper">
-                <Heatmap
-                    startDate={startDate}
-                    endDate={endDate}
-                    values={generateHeatmapValues(startDate, endDate)}
-                    gutterSize={.5}
-                    classForValue={(item) => {
-                        let clampedCount = 0;
+            <Heatmap
+                startDate={startDate}
+                endDate={endDate}
+                values={generateHeatmapValues(startDate, endDate)}
+                gutterSize={3.5}
+                classForValue={(item) => {
+                    let clampedCount = 0;
 
-                        if (item !== null) {
-                            clampedCount = Math.max(item.count, 0);
-                            clampedCount = Math.min(item.count, 4);
-                        }
+                    if (item !== null) {
+                        clampedCount = Math.max(item.count, 0);
+                        clampedCount = Math.min(item.count, 4);
+                    }
 
-                        return `scale-${clampedCount}`;
-                    }}
-                    showWeekdayLabels
-                />
-            </div>
-
-            <span>Random calendar (does not represent actual contribution data)</span>
+                    return `scale-${clampedCount}`;
+                }}
+                showWeekdayLabels
+            />
         </div>
-    );
+        );
 };
 
 export default RandomCalendar;

@@ -9,22 +9,36 @@
 @tailwind utilities;
 
 
-h1{
+h1 {
   font-family: "arcade", sans-serif;
 }
 
-.custom-border{
+.custom-border {
   border: 1px solid #00000036;
 }
 
 @layer base {
-  .section-container{
-    @apply  w-full flex gap-4 flex-wrap max-w-[1300px] mx-auto items-center justify-center bg-white px-4 py-6 rounded-lg shadow-sm border
+  .section-container {
+    @apply w-full flex gap-4 flex-wrap max-w-[1300px] mx-auto items-center justify-center bg-white px-4 py-6 rounded-lg shadow-sm border
   }
 }
 
-@media (max-width: 800px){
-  html{
-    font-size: 80%;
-  }
+.scale-0 {
+  fill: var(--calendar-scale-0);
+}
+
+.scale-1 {
+  fill: var(--calendar-scale-1);
+}
+
+.scale-2 {
+  fill: var(--calendar-scale-2);
+}
+
+.scale-3 {
+  fill: var(--calendar-scale-3);
+}
+
+.scale-4 {
+  fill: var(--calendar-scale-4);
 }

@@ -2,15 +2,12 @@
 import AddAmount from "@/components/AddButton";
 import AddModal from "@/components/AddModal";
 import Chart from "@/components/Chart"
-import History from "@/components/History"
 import Miliestones from "@/components/Miliestones"
 import MonthlyQuota from "@/components/MonthlyQuota"
-import GlobalLoader from "@/components/ui/GlobalLoader";
 import Loader from "@/components/ui/Loader";
 import { getGoal, updateGoal } from "@/lib/actions/goal.action"
 import alertAtom from "@/store/alert";
 import loaderAtom from "@/store/loader";
-import moment from "moment";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil";
 
@@ -102,6 +99,12 @@ function page({
   }
 
 
+  if (data?.current >= data?.goal) {
+    return <div className="w-full h-[100vh] flex items-center justify-center">
+      <h1 className="max-w-[1300px] mx-auto w-full text-[100px] md:text-[150px] font-semibold text-gray-900 pl-1 font-mono uppercase ">Task Completed</h1>
+
+    </div>
+  }
 
   if (data?.id) {
     return <main className="flex space-y-10 w-full flex-col p-5 pt-[200px] bg-gray-50 min-h-[100vh] " >
@@ -114,20 +117,6 @@ function page({
         <h1 className="font-mono text-[150px]"> {data.current} <span className="text-[20px] font-extrabold -mt-5 bg-gray-50  border shadow-sm rounded-md px-3 py-1"> {data.goal} </span> </h1>
       </div>
 
-      <div className="section-container">
-        <h1 className="text-[40px] font-mono font-semibold">This Year</h1>
-
-        <Chart />
-        <History />
-      </div>
-
-      <div className="section-container ">
-        <Miliestones milestones={data.milestones} />
-      </div>
-
-      <div className="section-container">
-        <MonthlyQuota quota={data.monthlyQuota} />
-      </div>
 
     </main >
   } else {

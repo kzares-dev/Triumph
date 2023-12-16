@@ -29,7 +29,7 @@ function TaskCard({ goal }: Props) {
     const [_, setSelectedGoal] = useRecoilState(selectedGoalAtom)
 
     return (
-        <div onClick={() => { setSelectedGoal(goal); router.push(`/goal/${goal.id}`) } } className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col justify-between min-w-[400px] h-[200px] bg-white shadow border rounded-md p-5 cursor-pointer">
+        <div onClick={() => { setSelectedGoal(goal); router.push(`/goal/${goal.id}`) }} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col justify-between min-w-[400px] h-[200px] bg-white shadow border rounded-md p-5 cursor-pointer">
 
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center flex-row gap-3">
@@ -49,7 +49,9 @@ function TaskCard({ goal }: Props) {
             </div>
 
             <div className="py-2">
-                <h1 className="p-1 border rounded-md text-[#666] font-mono text-[15px] font-bold "> {goal.current}$ from {goal.goal} $   </h1>
+                <h1 className="p-1 border rounded-md text-[#666] font-mono text-[15px] font-bold ">
+                    { goal.current >= goal.goal ? "task completed" : `${goal.current}$ from ${goal.goal} $` }
+                </h1>
             </div>
 
         </div>
